@@ -52,18 +52,17 @@ public class GameModel : MonoBehaviour {
       emitNumber =2;
       emitPosition = new Vector3(2.5f, 0.2f, -5f);
       emitDirection = new Vector3(-20f, 35.0f, 67f);
-    }
+      }
 		for(int i = 0;i < emitNumber; ++i)
 		{
 			diskIds.Add(DiskFactory.getInstance().getDisk());
 			disks.Add(DiskFactory.getInstance().getDiskObject(diskIds[i]));
-      disks[i].transform.localScale *= diskScale;
+                        disks[i].transform.localScale *= diskScale;
 			disks[i].GetComponent<Renderer>().material.color = diskColor;
-			disks[i].transform.position = new Vector3(
-			                     emitPosition.x,emitPosition.y + i,emitPosition.z);
+			disks[i].transform.position = new Vector3(emitPosition.x,emitPosition.y + i,emitPosition.z);
 			disks[i].SetActive(true);
 			disks[i].GetComponent<Rigidbody>().AddForce(emitDirection.normalized *
-              Random.Range(emitSpeed * 5,emitSpeed * 10)/10,ForceMode.Impulse);
+                                            Random.Range(emitSpeed * 5,emitSpeed * 10)/10,ForceMode.Impulse);
 		}
 	}
 
@@ -89,7 +88,7 @@ public class GameModel : MonoBehaviour {
 			if(!disks[i].activeInHierarchy)
 			{
 				scene.getrule().scoreADisk(diskScore);
-        recycdisk(i);
+                                recycdisk(i);
 			}
 			else if(disks[i].transform.position.y < 0)
 			{
